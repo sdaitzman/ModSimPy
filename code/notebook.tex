@@ -1,0 +1,1162 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Project\_3 }
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{why-walk-when-you-can-zipline}{%
+\section{Why Walk When You Can
+Zipline?}\label{why-walk-when-you-can-zipline}}
+
+\hypertarget{sam-daitzman-and-jocelyn-jimenez}{%
+\subsection{Sam Daitzman and Jocelyn
+Jimenez}\label{sam-daitzman-and-jocelyn-jimenez}}
+
+December, 2018
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{} Configure Jupyter so figures appear in the notebook}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{c+c1}{\PYZsh{} Configure Jupyter to display the assigned value after an assignment}
+        \PY{o}{\PYZpc{}}\PY{k}{config} InteractiveShell.ast\PYZus{}node\PYZus{}interactivity=\PYZsq{}last\PYZsq{}
+        
+        \PY{c+c1}{\PYZsh{} import functions from the modsim.py module}
+        \PY{k+kn}{from} \PY{n+nn}{modsim} \PY{k}{import} \PY{o}{*}
+\end{Verbatim}
+
+
+    \hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Although Olin is a very small campus, it is sometimes very tedious
+having to walk through various curved paths and flights of stairs. We
+noticed that there was great potential of a zip line from Olin's
+Academic Center to West Hall. Initially there were multiple issues that
+arose. For instance, where will the landing spot be? In the case of our
+model, we believe it is best if the zip line ends on the corner room in
+West Hall on the second floor because it gives us the fastest access to
+most dorms in West Hall. If we were to ask ``Which floor in the AC
+allows us to get faster to our destination?'' the answer would be
+obvious, the 4th floor; but if you zipline at too steep an angle, you
+are likely to get injured. As a result, we decided to take into
+consideration the safety of the individual in order to make it a more
+useful model. Our model asks what the fastest safe zip line starting
+mount-point would be to get from the AC to West Hall as fast as (safely)
+possible. Stick around to find out where to anchor a zip-line in the
+Academic Center.
+
+    \hypertarget{code-setup}{%
+\section{Code Setup}\label{code-setup}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{} units!}
+        \PY{n}{year} \PY{o}{=} \PY{n}{UNITS}\PY{o}{.}\PY{n}{year}
+        \PY{n}{s} \PY{o}{=} \PY{n}{UNITS}\PY{o}{.}\PY{n}{second}
+        \PY{n}{N} \PY{o}{=} \PY{n}{UNITS}\PY{o}{.}\PY{n}{newton}
+        \PY{n}{kg} \PY{o}{=} \PY{n}{UNITS}\PY{o}{.}\PY{n}{kilogram}
+        \PY{n}{m} \PY{o}{=} \PY{n}{UNITS}\PY{o}{.}\PY{n}{meter}
+\end{Verbatim}
+
+
+    To prove the point that is is a good idea for Olin to have a zip line,
+we modeled how the change in position will affect the velocity of the
+individual. We considered important initial/constant variables like the
+starting position, where (0,0) is at the tallest part of the Academic
+Center. For the following model, the starting velocity of the person in
+the x and y dimensions is 0 m/s, which can be seen below.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{}Starting position on the x and y axis}
+        \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{*} \PY{n}{m}\PY{p}{)}
+        \PY{n}{y\PYZus{}0} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{*} \PY{n}{m}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Starting velocity in the x and y dimension}
+        \PY{n}{vx\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{0} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}
+        \PY{n}{vy\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{0} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}
+        
+        \PY{n}{init} \PY{o}{=} \PY{n}{State}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x\PYZus{}0}\PY{p}{,}
+                     \PY{n}{y}\PY{o}{=}\PY{n}{y\PYZus{}0}\PY{p}{,}
+                     \PY{n}{vx}\PY{o}{=}\PY{n}{vx\PYZus{}0}\PY{p}{,}
+                     \PY{n}{vy}\PY{o}{=}\PY{n}{vy\PYZus{}0}\PY{p}{)}
+\end{Verbatim}
+
+
+    Other constants include the mass, density, and area of the individual,
+gravity, drag force, the height of the West Hall window, the maximum
+landing speed and the end time. These constants are defined as the
+parameters of the model.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{params} \PY{o}{=} \PY{n}{Params}\PY{p}{(}\PY{n}{init}\PY{o}{=}\PY{n}{init}\PY{p}{,}
+          
+          \PY{c+c1}{\PYZsh{} Mass of the individual ziplining}
+          \PY{n}{m\PYZus{}human}\PY{o}{=}\PY{l+m+mi}{70} \PY{o}{*} \PY{n}{kg}\PY{p}{,}
+                        
+          \PY{c+c1}{\PYZsh{}Gravity}
+          \PY{n}{grav} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{9.81}\PY{p}{)}\PY{p}{,}
+                        
+          \PY{c+c1}{\PYZsh{}Mass Density of the Fluid}
+          \PY{n}{rho} \PY{o}{=} \PY{l+m+mf}{1.275} \PY{o}{*} \PY{n}{kg} \PY{o}{/} \PY{n}{m} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}\PY{p}{,} 
+                        
+          \PY{c+c1}{\PYZsh{}Reference Area of individual}
+          \PY{n}{area} \PY{o}{=} \PY{l+m+mf}{0.7} \PY{o}{*} \PY{n}{m} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} 
+                        
+          \PY{c+c1}{\PYZsh{}Drag Coefficent }
+          \PY{n}{cd} \PY{o}{=} \PY{l+m+mf}{1.2}\PY{p}{,}
+                        
+          \PY{c+c1}{\PYZsh{}End Time}
+          \PY{n}{t\PYZus{}end}\PY{o}{=}\PY{l+m+mf}{100e6} \PY{o}{*} \PY{n}{s}\PY{p}{,}
+                        
+          \PY{c+c1}{\PYZsh{}Height of West Hall Window in meters}
+          \PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height} \PY{o}{=} \PY{l+m+mf}{59.3}\PY{p}{,}
+                        
+          \PY{c+c1}{\PYZsh{}Maximum Landing Speed}
+          \PY{n}{max\PYZus{}landing\PYZus{}speed} \PY{o}{=} \PY{l+m+mi}{12} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}
+        \PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Creates a system containing constants}
+        \PY{k}{def} \PY{n+nf}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{zipline}\PY{p}{)}\PY{p}{:}
+            \PY{n}{unpack}\PY{p}{(}\PY{n}{params}\PY{p}{)}
+            
+            \PY{n}{system} \PY{o}{=} \PY{n}{System}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{z}\PY{o}{=}\PY{n}{zipline}\PY{p}{)}
+            
+            \PY{k}{return} \PY{n}{system}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} init                    x                0 meter
+        y                0 me{\ldots}
+        m\_human                                                       70 kilogram
+        grav                    [0.0 meter / second ** 2, -9.81 meter / second{\ldots}
+        rho                                           1.275 kilogram / meter ** 3
+        area                                                       0.7 meter ** 2
+        cd                                                                    1.2
+        t\_end                                                  100000000.0 second
+        WH\_window\_abs\_height                                                 59.3
+        max\_landing\_speed                                     12.0 meter / second
+        z                                              [100.0 meter, -25.1 meter]
+        dtype: object
+\end{Verbatim}
+            
+    \hypertarget{force-functions}{%
+\section{Force Functions}\label{force-functions}}
+
+    We decided to calculate the different forces that might affect the
+zip-liner by including forces like gravity, drag, net and effective
+force. The cells below demonstrate functions and equations that
+contribute to the final velocity of the individual. We calculate the
+force of gravity pulling the zipliner downward and the drag force
+resisting their motion, and their sum is the net force. Then we
+calculate the effective force, which is the component of the force in
+line with the zip-line.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{earth\PYZus{}grav}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{n}{g}\PY{p}{)}\PY{p}{:}
+          \PY{k}{return} \PY{n}{g} \PY{o}{*} \PY{n}{m}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{earth\PYZus{}grav}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{kg}\PY{p}{,} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{grav}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $\begin{pmatrix}0.0 & -981.0\end{pmatrix}\ \frac{\mathrm{kilogram} \cdot \mathrm{meter}}{\mathrm{second}^{2}}$
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{drag\PYZus{}force}\PY{p}{(}\PY{n}{rho}\PY{p}{,} \PY{n}{v}\PY{p}{,} \PY{n}{area}\PY{p}{,} \PY{n}{cd}\PY{p}{)}\PY{p}{:}
+          
+          \PY{c+c1}{\PYZsh{}Direction}
+          \PY{n}{direction}\PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{v}\PY{o}{.}\PY{n}{hat}\PY{p}{(}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Drag Equation}
+          \PY{n}{drag} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{rho} \PY{o}{*} \PY{n}{v}\PY{o}{.}\PY{n}{mag}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*}\PY{n}{area} \PY{o}{*} \PY{n}{cd}
+          
+          \PY{c+c1}{\PYZsh{}Drag as a Vector}
+          \PY{k}{return} \PY{n}{direction} \PY{o}{*} \PY{n}{drag}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{drag\PYZus{}force}\PY{p}{(}\PY{l+m+mi}{20} \PY{o}{*} \PY{n}{kg} \PY{o}{/} \PY{n}{m} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{10} \PY{o}{*} \PY{n}{m} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mf}{0.8}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $\begin{pmatrix}-1200.0 & -1600.0\end{pmatrix}\ \frac{\mathrm{kilogram} \cdot \mathrm{meter}}{\mathrm{second}^{2}}$
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{effective\PYZus{}force}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Calculates gravitational force for arbitrary objects\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+          \PY{n}{unpack}\PY{p}{(}\PY{n}{system}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Force of Gravity}
+          \PY{n}{grav\PYZus{}f} \PY{o}{=} \PY{n}{earth\PYZus{}grav}\PY{p}{(}\PY{n}{m\PYZus{}human}\PY{p}{,} \PY{n}{grav}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Force of Drag}
+          \PY{n}{drag\PYZus{}f} \PY{o}{=} \PY{n}{drag\PYZus{}force}\PY{p}{(}\PY{n}{rho}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{)}\PY{p}{,} \PY{n}{area}\PY{p}{,} \PY{n}{cd}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Net Force}
+          \PY{n}{net\PYZus{}force} \PY{o}{=} \PY{n}{grav\PYZus{}f} \PY{o}{+} \PY{n}{drag\PYZus{}f}
+          
+          \PY{c+c1}{\PYZsh{}Effective Force}
+          \PY{n}{effective\PYZus{}force} \PY{o}{=} \PY{n}{net\PYZus{}force}\PY{o}{.}\PY{n}{proj}\PY{p}{(}\PY{n}{z}\PY{o}{.}\PY{n}{hat}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+          \PY{k}{return} \PY{n}{effective\PYZus{}force}
+\end{Verbatim}
+
+
+    \hypertarget{simulation-setup}{%
+\section{Simulation Setup}\label{simulation-setup}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{slope\PYZus{}func}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+            
+            \PY{n}{unpack}\PY{p}{(}\PY{n}{system}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} make velocity}
+            \PY{n}{v} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} calculate force}
+            \PY{n}{force} \PY{o}{=} \PY{n}{effective\PYZus{}force}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{system}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} calculate acceleration}
+            \PY{n}{a} \PY{o}{=} \PY{n}{force} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{m\PYZus{}human}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} cast acceleration to modsimvector}
+            \PY{n}{a} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} return velocity and acceleration}
+            \PY{k}{return} \PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{y}
+          
+        \PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{,} \PY{n}{ax}\PY{p}{,} \PY{n}{ay} \PY{o}{=} \PY{n}{slope\PYZus{}func}\PY{p}{(}\PY{n}{init}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{,} \PY{n}{ax}\PY{p}{,} \PY{n}{ay}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.0 meter / second 0.0 meter / second 2.3163759958833534 meter / second ** 2 -0.5814103749667217 meter / second ** 2
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{event\PYZus{}func}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+            \PY{n}{position} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+            \PY{k}{return} \PY{n}{position}\PY{o}{.}\PY{n}{mag} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{mag}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{event\PYZus{}func}\PY{p}{(}\PY{n}{init}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $-103.10193984596022\ \mathrm{meter}$
+
+    
+
+    \hypertarget{simulation}{%
+\section{Simulation}\label{simulation}}
+
+    This simulation shows the zip-liner descending from the AC to West Hall
+from a particular starting height.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{results}\PY{p}{,} \PY{n}{details} \PY{o}{=} \PY{n}{run\PYZus{}ode\PYZus{}solver}\PY{p}{(}\PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{slope\PYZus{}func}\PY{p}{,} \PY{n}{events}\PY{o}{=}\PY{n}{event\PYZus{}func}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LSODA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{results}\PY{o}{.}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{magnitude}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{go\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    This plot shows the position over time. Each point along the line is a
+different moment in time.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{y}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position over Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time (s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    These lines represent the change in X and Y position over time.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{v\PYZus{}final} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vx}\PY{p}{)} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}\PY{p}{,} \PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vy}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{v\PYZus{}final}\PY{o}{.}\PY{n}{mag}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+15.73897673293782 meter / second
+
+    \end{Verbatim}
+
+    The cell above shows how we obtain the arrival velocity.
+
+    \hypertarget{sweeping-start-height}{%
+\section{Sweeping Start Height}\label{sweeping-start-height}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{thresholds} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i}\PY{p}{,}\PY{n}{e} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{thresholds}\PY{p}{)}\PY{p}{:}
+          \PY{n}{thresholds}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{thresholds}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 0.7         4.03333333  7.36666667 10.7        14.03333333 17.36666667
+ 20.7        24.03333333 27.36666667 30.7       ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{thresholds}\PY{p}{:}
+          \PY{n}{system} \PY{o}{=} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{y}\PY{p}{)}\PY{p}{)}
+          \PY{n}{results}\PY{p}{,} \PY{n}{details} \PY{o}{=} \PY{n}{run\PYZus{}ode\PYZus{}solver}\PY{p}{(}\PY{n}{system}\PY{p}{,} \PY{n}{slope\PYZus{}func}\PY{p}{,} \PY{n}{events}\PY{o}{=}\PY{n}{event\PYZus{}func}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LSODA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{results}\PY{o}{.}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{magnitude} \PY{o}{+} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall (Different Starting Points)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a58898>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf929fa7b8>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf929af780>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a2fdd8>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf929b70f0>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a6b7b8>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a6f940>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a45358>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a257f0>]
+\end{Verbatim}
+            
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} [<matplotlib.lines.Line2D at 0x7fbf92a63438>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_31_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The plot above shows the process of zip-lining from various starting
+heights. We obtained the range of height differences using Olin
+College's blueprints, by comparing the absolute heights of the top of
+the AC, bottom of the AC, and our destination room in West Hall.
+
+    \hypertarget{finding-end-velocities}{%
+\section{Finding End Velocities}\label{finding-end-velocities}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{thresholds} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{thresholds}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[60.         62.14285714 64.28571429 66.42857143 68.57142857 70.71428571
+ 72.85714286 75.         77.14285714 79.28571429 81.42857143 83.57142857
+ 85.71428571 87.85714286 90.        ]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{landing\PYZus{}speed}\PY{p}{(}\PY{n}{startHeight}\PY{p}{,} \PY{n}{params}\PY{p}{)}\PY{p}{:}
+          \PY{n}{height\PYZus{}y} \PY{o}{=} \PY{n}{startHeight} \PY{o}{\PYZhy{}} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}
+          \PY{n}{system} \PY{o}{=} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{height\PYZus{}y}\PY{p}{)}\PY{p}{)}
+          \PY{n}{results}\PY{p}{,} \PY{n}{details} \PY{o}{=} \PY{n}{run\PYZus{}ode\PYZus{}solver}\PY{p}{(}\PY{n}{system}\PY{p}{,} \PY{n}{slope\PYZus{}func}\PY{p}{,} \PY{n}{events}\PY{o}{=}\PY{n}{event\PYZus{}func}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LSODA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{v\PYZus{}final} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vx}\PY{p}{)} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{n}{s}\PY{p}{,} \PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vy}\PY{p}{)}\PY{p}{)}
+          \PY{k}{return} \PY{n}{v\PYZus{}final}\PY{o}{.}\PY{n}{mag}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{landing\PYZus{}speed}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $2.651921049001805\ \frac{\mathrm{meter}}{\mathrm{second}}$
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{landing} \PY{o}{=} \PY{n}{SweepSeries}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{y} \PY{o+ow}{in} \PY{n}{thresholds}\PY{p}{:}
+          \PY{n}{landing}\PY{p}{[}\PY{n}{y}\PY{p}{]} \PY{o}{=} \PY{n}{landing\PYZus{}speed}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+          
+        \PY{n}{plot}\PY{p}{(}\PY{n}{landing}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Starting Height (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Landing speed(m/s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    This plot shows the landing speed depending on starting height. By
+looking at this plot, we can choose a particular start height depending
+on our desired landing speed.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{landing}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}0}]:} 60.000000     2.651921049001805 meter / second
+        62.142857     5.343746587591299 meter / second
+        64.285714     7.074894599711499 meter / second
+        66.428571     8.456477911463677 meter / second
+        68.571429      9.63932336233028 meter / second
+        70.714286    10.688617419758609 meter / second
+        72.857143     11.63984596447041 meter / second
+        75.000000    12.514808133787712 meter / second
+        77.142857    13.327981059112659 meter / second
+        79.285714     14.08954798936296 meter / second
+        81.428571    14.806934586049014 meter / second
+        83.571429     15.48581549457082 meter / second
+        85.714286    16.130651554946795 meter / second
+        87.857143    16.745008583241006 meter / second
+        90.000000     17.33179174000917 meter / second
+        dtype: object
+\end{Verbatim}
+            
+    \hypertarget{ideal-starting-height}{%
+\section{Ideal Starting Height}\label{ideal-starting-height}}
+
+    We wanted to calculate our ideal starting height. We wrote an error
+function that approaches zero as the ideal starting height is
+approached. The maximum landing speed is determined based on the maximum
+safe landing speed of a hang-glider, which exerts analagous forces on a
+human.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{error\PYZus{}func}\PY{p}{(}\PY{n}{startHeight}\PY{p}{,} \PY{n}{params}\PY{p}{)}\PY{p}{:}
+          \PY{k}{return} \PY{n}{params}\PY{o}{.}\PY{n}{max\PYZus{}landing\PYZus{}speed} \PY{o}{\PYZhy{}} \PY{n}{landing\PYZus{}speed}\PY{p}{(}\PY{n}{startHeight}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{error\PYZus{}func}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $9.348078950998195\ \frac{\mathrm{meter}}{\mathrm{second}}$
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{res} \PY{o}{=} \PY{n}{fsolve}\PY{p}{(}\PY{n}{error\PYZus{}func}\PY{p}{,} \PY{l+m+mi}{75}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{res}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[73.71902744]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{error\PYZus{}func}\PY{p}{(}\PY{n}{fsolve}\PY{p}{(}\PY{n}{error\PYZus{}func}\PY{p}{,} \PY{l+m+mi}{75}\PY{p}{,} \PY{n}{params}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{params}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $2.1085355683680973e-12\ \frac{\mathrm{meter}}{\mathrm{second}}$
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{system} \PY{o}{=} \PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{fsolve}\PY{p}{(}\PY{n}{error\PYZus{}func}\PY{p}{,} \PY{l+m+mi}{75}\PY{p}{,} \PY{n}{params}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        \PY{n}{results}\PY{p}{,} \PY{n}{details} \PY{o}{=} \PY{n}{run\PYZus{}ode\PYZus{}solver}\PY{p}{(}\PY{n}{system}\PY{p}{,} \PY{n}{slope\PYZus{}func}\PY{p}{,} \PY{n}{events}\PY{o}{=}\PY{n}{event\PYZus{}func}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LSODA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{results}\PY{o}{.}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{magnitude} \PY{o}{+} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+        \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+        \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_46_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{magnitude} \PY{o}{+} \PY{n}{params}\PY{o}{.}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+        \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time (s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+        \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    This plot represents the ideal descent of a zip-liner from the AC to
+West Hall.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{Vector}\PY{p}{(}\PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vx}\PY{p}{)}\PY{p}{,} \PY{n}{get\PYZus{}last\PYZus{}value}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{vy}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{mag}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}0}]:}
+    
+    $11.999999999997891\ dimensionless$
+
+    
+
+    The zip-liner arrives incredibly close to, but slightly below, the
+maximum safe velocity.
+
+    \hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
+
+In this model, we find that the ideal starting height to arrive as
+quickly as possible (but at a safe speed) when zip-lining to West Hall
+would be around the third floor (about 15m above the first floor of the
+AC). The zip-liner would arrive safely at a speed slightly below 12 m/s.
+Before attempting this, we would want to conduct more precise modeling
+and account for the forces we've abstracted out of our model, like the
+tension in the rope and the changing normal force of the rope against
+the zip-liner through the handle.
+
+    \hypertarget{future-steps-questioning-assumptions.-straight-zipline}{%
+\section{Future Steps: Questioning Assumptions. Straight
+Zipline?}\label{future-steps-questioning-assumptions.-straight-zipline}}
+
+    We didn't have time to finish this modeling work, but with more work we
+might be able to simulate a more accurate zip-line curvature. To
+simplify our modeling, we assumed the line would be under infinite
+tension (in other words, perfectly straight) and the wheel would roll
+perfectly. For the wheel to behave efficiently, it's more likely that
+the line would have to maintain some slack. To get a more accurate
+estimate, we would continue this modeling work.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{calc\PYZus{}parabola\PYZus{}vertex}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{y2}\PY{p}{,} \PY{n}{x3}\PY{p}{,} \PY{n}{y3}\PY{p}{)}\PY{p}{:}
+        		\PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{		Adapted and modifed to get the unknowns for defining a parabola:}
+        \PY{l+s+sd}{		http://stackoverflow.com/questions/717762/how\PYZhy{}to\PYZhy{}calculate\PYZhy{}the\PYZhy{}vertex\PYZhy{}of\PYZhy{}a\PYZhy{}parabola\PYZhy{}given\PYZhy{}three\PYZhy{}points}
+        \PY{l+s+sd}{    With thanks to http://chris35wills.github.io/parabola\PYZus{}python/}
+        \PY{l+s+sd}{		\PYZsq{}\PYZsq{}\PYZsq{}}
+        
+        		\PY{n}{d} \PY{o}{=} \PY{p}{(}\PY{n}{x1}\PY{o}{\PYZhy{}}\PY{n}{x2}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{x1}\PY{o}{\PYZhy{}}\PY{n}{x3}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{x2}\PY{o}{\PYZhy{}}\PY{n}{x3}\PY{p}{)}\PY{p}{;}
+        		\PY{n}{A}     \PY{o}{=} \PY{p}{(}\PY{n}{x3} \PY{o}{*} \PY{p}{(}\PY{n}{y2}\PY{o}{\PYZhy{}}\PY{n}{y1}\PY{p}{)} \PY{o}{+} \PY{n}{x2} \PY{o}{*} \PY{p}{(}\PY{n}{y1}\PY{o}{\PYZhy{}}\PY{n}{y3}\PY{p}{)} \PY{o}{+} \PY{n}{x1} \PY{o}{*} \PY{p}{(}\PY{n}{y3}\PY{o}{\PYZhy{}}\PY{n}{y2}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{d}\PY{p}{;}
+        		\PY{n}{B}     \PY{o}{=} \PY{p}{(}\PY{n}{x3}\PY{o}{*}\PY{n}{x3} \PY{o}{*} \PY{p}{(}\PY{n}{y1}\PY{o}{\PYZhy{}}\PY{n}{y2}\PY{p}{)} \PY{o}{+} \PY{n}{x2}\PY{o}{*}\PY{n}{x2} \PY{o}{*} \PY{p}{(}\PY{n}{y3}\PY{o}{\PYZhy{}}\PY{n}{y1}\PY{p}{)} \PY{o}{+} \PY{n}{x1}\PY{o}{*}\PY{n}{x1} \PY{o}{*} \PY{p}{(}\PY{n}{y2}\PY{o}{\PYZhy{}}\PY{n}{y3}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{d}\PY{p}{;}
+        		\PY{n}{C}     \PY{o}{=} \PY{p}{(}\PY{n}{x2} \PY{o}{*} \PY{n}{x3} \PY{o}{*} \PY{p}{(}\PY{n}{x2}\PY{o}{\PYZhy{}}\PY{n}{x3}\PY{p}{)} \PY{o}{*} \PY{n}{y1}\PY{o}{+}\PY{n}{x3} \PY{o}{*} \PY{n}{x1} \PY{o}{*} \PY{p}{(}\PY{n}{x3}\PY{o}{\PYZhy{}}\PY{n}{x1}\PY{p}{)} \PY{o}{*} \PY{n}{y2}\PY{o}{+}\PY{n}{x1} \PY{o}{*} \PY{n}{x2} \PY{o}{*} \PY{p}{(}\PY{n}{x1}\PY{o}{\PYZhy{}}\PY{n}{x2}\PY{p}{)} \PY{o}{*} \PY{n}{y3}\PY{p}{)} \PY{o}{/} \PY{n}{d}\PY{p}{;}
+        
+        		\PY{k}{return} \PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{,}\PY{n}{C}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n+nb}{range} \PY{o}{=} \PY{n}{linrange}\PY{p}{(}\PY{l+m+mi}{60}\PY{p}{,} \PY{l+m+mi}{90}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{:}
+          \PY{n}{xNum} \PY{o}{=} \PY{n}{linrange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+          \PY{n}{x1}\PY{p}{,}\PY{n}{y1}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+          \PY{n}{x3}\PY{p}{,}\PY{n}{y3}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mf}{59.3}\PY{p}{]}
+        
+          \PY{n}{x2}\PY{p}{,}\PY{n}{y2}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{50}\PY{p}{,}\PY{n}{y3}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{y1}\PY{o}{\PYZhy{}}\PY{n}{y3}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{pi}\PY{p}{)}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{}Calculate the unknowns of the equation y=ax\PYZca{}2+bx+c}
+          \PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{c}\PY{o}{=}\PY{n}{calc\PYZus{}parabola\PYZus{}vertex}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{y2}\PY{p}{,} \PY{n}{x3}\PY{p}{,} \PY{n}{y3}\PY{p}{)}
+        
+          \PY{n}{zline} \PY{o}{=} \PY{n}{SweepSeries}\PY{p}{(}\PY{p}{)}
+          \PY{n}{dz} \PY{o}{=} \PY{n}{SweepSeries}\PY{p}{(}\PY{p}{)}
+        
+          \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{xNum}\PY{p}{:}
+            \PY{n}{zline}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{+} \PY{n}{b} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{c}
+            \PY{n}{dz}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{b}
+        
+          \PY{n}{plot}\PY{p}{(}\PY{n}{xNum}\PY{p}{,} \PY{n}{zline}\PY{p}{)} 
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Parabolic Zip\PYZhy{}line Curves}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_56_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{:}
+          \PY{n}{xNum} \PY{o}{=} \PY{n}{linrange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+          \PY{n}{x1}\PY{p}{,}\PY{n}{y1}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+          \PY{n}{x3}\PY{p}{,}\PY{n}{y3}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mf}{59.3}\PY{p}{]}
+        
+          \PY{n}{x2}\PY{p}{,}\PY{n}{y2}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{50}\PY{p}{,}\PY{n}{y3}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{y1}\PY{o}{\PYZhy{}}\PY{n}{y3}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{pi}\PY{p}{)}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{}Calculate the unknowns of the equation y=ax\PYZca{}2+bx+c}
+          \PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{c}\PY{o}{=}\PY{n}{calc\PYZus{}parabola\PYZus{}vertex}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{y2}\PY{p}{,} \PY{n}{x3}\PY{p}{,} \PY{n}{y3}\PY{p}{)}
+        
+          \PY{n}{zline} \PY{o}{=} \PY{n}{SweepSeries}\PY{p}{(}\PY{p}{)}
+          \PY{n}{dz} \PY{o}{=} \PY{n}{SweepSeries}\PY{p}{(}\PY{p}{)}
+        
+          \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{xNum}\PY{p}{:}
+            \PY{n}{zline}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{+} \PY{n}{b} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{c}
+            \PY{n}{dz}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{b}
+        
+          \PY{n}{plot}\PY{p}{(}\PY{n}{xNum}\PY{p}{,} \PY{n}{dz}\PY{p}{)} 
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Parabolic Zip\PYZhy{}line Derivatives}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_57_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{effective\PYZus{}parabolic\PYZus{}force}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+          \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Calculates gravitational force for arbitrary objects\PYZdq{}\PYZdq{}\PYZdq{}}
+          \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+          \PY{n}{unpack}\PY{p}{(}\PY{n}{system}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Force of Gravity}
+          \PY{n}{grav\PYZus{}f} \PY{o}{=} \PY{n}{earth\PYZus{}grav}\PY{p}{(}\PY{n}{m\PYZus{}human}\PY{p}{,} \PY{n}{grav}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Force of Drag}
+          \PY{n}{drag\PYZus{}f} \PY{o}{=} \PY{n}{drag\PYZus{}force}\PY{p}{(}\PY{n}{rho}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{)}\PY{p}{,} \PY{n}{area}\PY{p}{,} \PY{n}{cd}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Net Force}
+          \PY{n}{net\PYZus{}force} \PY{o}{=} \PY{n}{grav\PYZus{}f} \PY{o}{+} \PY{n}{drag\PYZus{}f}
+          
+          \PY{c+c1}{\PYZsh{} Find parabola}
+          \PY{n}{x1}\PY{p}{,}\PY{n}{y1}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{z}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{magnitude}\PY{p}{]} \PY{c+c1}{\PYZsh{} AC startpoint}
+          \PY{n}{x3}\PY{p}{,}\PY{n}{y3}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,}\PY{n}{WH\PYZus{}window\PYZus{}abs\PYZus{}height}\PY{p}{]} \PY{c+c1}{\PYZsh{} WH endpoint}
+        
+          \PY{n}{x2}\PY{p}{,}\PY{n}{y2}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{50}\PY{p}{,}\PY{n}{y3}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{y1}\PY{o}{\PYZhy{}}\PY{n}{y3}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{pi}\PY{p}{)}\PY{p}{]} \PY{c+c1}{\PYZsh{} midpoint}
+          
+          \PY{c+c1}{\PYZsh{}Calculate the unknowns}
+          \PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{c}\PY{o}{=}\PY{n}{calc\PYZus{}parabola\PYZus{}vertex}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{y2}\PY{p}{,} \PY{n}{x3}\PY{p}{,} \PY{n}{y3}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Find the tangent vector}
+          \PY{n}{tangent\PYZus{}vector} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{a} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{b}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{tangent\PYZus{}vector}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Effective Force}
+          \PY{n}{effective\PYZus{}force} \PY{o}{=} \PY{n}{net\PYZus{}force}\PY{o}{.}\PY{n}{proj}\PY{p}{(}\PY{n}{tangent\PYZus{}vector}\PY{o}{.}\PY{n}{hat}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+          \PY{k}{return} \PY{n}{effective\PYZus{}force}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{slope\PYZus{}func\PYZus{}parabolic}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+            
+            \PY{n}{unpack}\PY{p}{(}\PY{n}{system}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} make velocity}
+            \PY{n}{v} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} calculate force}
+            \PY{n}{force} \PY{o}{=} \PY{n}{effective\PYZus{}parabolic\PYZus{}force}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{system}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} calculate acceleration}
+            \PY{n}{a} \PY{o}{=} \PY{n}{force} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{m\PYZus{}human}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} cast acceleration to modsimvector}
+            \PY{n}{a} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} return velocity and acceleration}
+            \PY{k}{return} \PY{n}{vx}\PY{p}{,} \PY{n}{vy}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{o}{.}\PY{n}{y}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{k}{def} \PY{n+nf}{event\PYZus{}func\PYZus{}parabolic}\PY{p}{(}\PY{n}{state}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{system}\PY{p}{)}\PY{p}{:}
+            \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{vx}\PY{p}{,} \PY{n}{vy} \PY{o}{=} \PY{n}{state}
+            \PY{n}{position} \PY{o}{=} \PY{n}{Vector}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+            \PY{k}{return} \PY{n}{position}\PY{o}{.}\PY{n}{mag} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{mag}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{results}\PY{p}{,} \PY{n}{details} \PY{o}{=} \PY{n}{run\PYZus{}ode\PYZus{}solver}\PY{p}{(}\PY{n}{make\PYZus{}system}\PY{p}{(}\PY{n}{params}\PY{p}{,} \PY{n}{Vector}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{m}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{25.1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{slope\PYZus{}func\PYZus{}parabolic}\PY{p}{,} \PY{n}{events}\PY{o}{=}\PY{n}{event\PYZus{}func\PYZus{}parabolic}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LSODA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{results}\PY{o}{.}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{magnitude}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{go\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zip\PYZhy{}lining from AC to West Hall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[ 1.         -1.48010425] dimensionless
+[ 1.         -1.48010425] dimensionless
+[ 1.         -1.48010425] dimensionless
+[ 1.         -1.48010425] dimensionless
+[ 1.         -1.48010425] dimensionless
+[ 1.         -1.48009196] dimensionless
+[ 1.         -1.48009196] dimensionless
+[ 1.         -1.48005512] dimensionless
+[ 1.         -1.48005512] dimensionless
+[ 1.         -1.47999374] dimensionless
+[ 1.         -1.47999374] dimensionless
+[ 1.         -1.47994324] dimensionless
+[ 1.         -1.47994324] dimensionless
+[ 1.         -1.47988327] dimensionless
+[ 1.         -1.47988327] dimensionless
+[ 1.         -1.47981382] dimensionless
+[ 1.         -1.47981382] dimensionless
+[ 1.         -1.47961671] dimensionless
+[ 1.         -1.47961672] dimensionless
+[ 1.         -1.47936885] dimensionless
+[ 1.         -1.47936885] dimensionless
+[ 1.         -1.47907025] dimensionless
+[ 1.         -1.47907025] dimensionless
+[ 1.         -1.47839559] dimensionless
+[ 1.         -1.47839563] dimensionless
+[ 1.         -1.47755259] dimensionless
+[ 1.         -1.47755265] dimensionless
+[ 1.         -1.47654139] dimensionless
+[ 1.         -1.47654146] dimensionless
+[ 1.         -1.47420988] dimensionless
+[ 1.         -1.47421032] dimensionless
+[ 1.         -1.47129704] dimensionless
+[ 1.         -1.47129773] dimensionless
+[ 1.         -1.46780456] dimensionless
+[ 1.         -1.46780542] dimensionless
+[ 1.         -1.45969223] dimensionless
+[ 1.         -1.45969747] dimensionless
+[ 1.         -1.44956597] dimensionless
+[ 1.         -1.44957438] dimensionless
+[ 1.         -1.43744636] dimensionless
+[ 1.        -1.4374568] dimensionless
+[ 1.         -1.41010184] dimensionless
+[ 1.         -1.41012485] dimensionless
+[ 1.         -1.37635458] dimensionless
+[ 1.         -1.37635986] dimensionless
+[ 1.         -1.33635607] dimensionless
+[ 1.         -1.33637233] dimensionless
+[ 1.         -1.29041791] dimensionless
+[ 1.         -1.29043259] dimensionless
+[ 1.         -1.22404196] dimensionless
+[ 1.         -1.22406891] dimensionless
+[ 1.         -1.14923573] dimensionless
+[ 1.         -1.14926861] dimensionless
+[ 1.         -1.06674115] dimensionless
+[ 1.         -1.06677028] dimensionless
+[ 1.       -0.977353] dimensionless
+[ 1.         -0.97738114] dimensionless
+[ 1.         -0.80995055] dimensionless
+[ 1.         -0.81009713] dimensionless
+[ 1.         -0.62979874] dimensionless
+[ 1.         -0.63009574] dimensionless
+[ 1.         -0.44292993] dimensionless
+[ 1.        -0.4432954] dimensionless
+[ 1.         -0.25607017] dimensionless
+[ 1.         -0.25646415] dimensionless
+[ 1.         -0.00772528] dimensionless
+[ 1.         -0.00835732] dimensionless
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_61_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{y}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{results}\PY{o}{.}\PY{n}{x}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{decorate}\PY{p}{(}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position over Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{n}{xlabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time (s)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+           \PY{n}{ylabel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Position (m)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+          \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_62_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Third floor near the ceiling
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}0}]:} \PY{c+c1}{\PYZsh{} Imports}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{clear\PYZus{}output}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        
+        \PY{c+c1}{\PYZsh{} Install Python libraries}
+        \PY{o}{!}pip3 install pandas seaborn sympy beautifulsoup4 lxml pint \PY{n+nv}{scipy}\PY{o}{=}\PY{o}{=}\PY{l+m}{1}.1.0 numpy
+        
+        \PY{c+c1}{\PYZsh{} Removes code before re\PYZhy{}downloading it}
+        \PY{o}{!}rm \PYZhy{}rf ./ModSimPy
+        \PY{o}{!}rm \PYZhy{}rf ./modsim.py
+        
+        \PY{c+c1}{\PYZsh{} Grabs ModSimPy}
+        \PY{o}{!}git clone https://github.com/AllenDowney/ModSimPy.git
+        \PY{o}{!}cp \PY{l+s+s2}{\PYZdq{}ModSimPy/code/modsim.py\PYZdq{}} .
+        
+        \PY{c+c1}{\PYZsh{} Resets kernel to flush outdated libraries (especially SciPy)}
+        \PY{n}{clear\PYZus{}output}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Configured for ModSimPy. Restarting kernel.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{time}\PY{o}{.}\PY{n}{sleep}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{os}\PY{o}{.}\PY{n}{\PYZus{}exit}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Configured for ModSimPy. Restarting kernel.
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
