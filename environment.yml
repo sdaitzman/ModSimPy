@@ -135,5 +135,5 @@ dependencies:
   - zope=1.0=py36_0
   - zope.interface=4.5.0=py36h14c3975_0
   - pint=0.7.2=py36_2
-prefix: /home/downey/anaconda3/envs/ModSimPy
+# prefix: /home/downey/anaconda3/envs/ModSimPy
 
